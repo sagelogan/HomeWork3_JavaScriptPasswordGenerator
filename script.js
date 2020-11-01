@@ -1,12 +1,18 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var lowercasearray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var uppercasearray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
-var numberarray = ["1","2","3","4","5","6","7","8","9","0"];
-var specialchararray = ["~","@","#","$","%","^","7","*","(",")"];
-var generatepasswordfromthis = [];
-var generatedpassword = "";
 
+var lowercasearray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+
+var uppercasearray = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+
+var numberarray = ["1","2","3","4","5","6","7","8","9","0"];
+
+var specialchararray = ["~","@","#","$","%","^","7","*","(",")"];
+
+var generatepasswordfromthis = [];
+
+var generatedpassword = "";
+//function that gets users desired password length 
 function myLengthFunction() {
   var txt;
   var length = prompt("Enter a length!\nMust be between 8 and 128\nThe number you eneter will determine how long the generated password will be");
@@ -19,7 +25,7 @@ function myLengthFunction() {
   document.getElementById("length").innerHTML = txt;
   
 }
-
+//funciton that determines if user wants lowercase characters in genertated password
 function myLowerCaseFunction() {
   var txt;
   var lowercase = confirm("Press a button!\nEither OK or Cancel.\nTo decide if lowercase characters should be included in generated password");
@@ -35,6 +41,7 @@ function myLowerCaseFunction() {
   document.getElementById("lowercase").innerHTML = txt;
   
 }
+//funciton that determines if user wants lowercase characters in genertated password
 
 function myUpperCaseFunction() {
   var txt;
@@ -102,11 +109,11 @@ function getRandomSpecialChar(specialchar) {
     }
 
 
-function myGeneratePasswordFunction() {
+function myGeneratedPasswordFunction() {
   console.log("button-click")
-  for (i=0; i<parseInt(length); i++){
+  for (i=0; i<parseInt(length); i++){ //not looping "length" amount of times
     
-    if(lowercase === true&&generatedpassword.length <= length){
+    if(lowercase === true&&generatedpassword.length<=length){   //not adding lowercase array to generated password string 
       generatedpassword += getRandomLowerCase();
       console.log(generatedpassword);
     }
@@ -121,14 +128,12 @@ function myGeneratePasswordFunction() {
       console.log(generatedpassword);
     }
 
-    // if(specialchar === true&&generatedpassword.length <= length){
-    //   generatedpassword += getRandomSpecialChar();
-    //   console.log(generatedpassword);
-    // }
-      else{
-      console.log("done");
-      }
+    if(specialchar === true&&generatedpassword.length <= length){
+      generatedpassword += getRandomSpecialChar();
+      console.log(generatedpassword);
+    }
+
   }   
-  //document.getElementById("#password")=sgeneratedpassword;
-  //return 
+  document.getElementById("#password")=sgeneratedpassword; //not displaying this string in the html
+  return 
 }
