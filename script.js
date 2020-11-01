@@ -12,10 +12,23 @@ var specialchararray = ["~","@","#","$","%","^","7","*","(",")"];
 var generatepasswordfromthis = [];
 
 var generatedpassword = "";
+
+var length = 0;
+
+var lowercase = false;
+
+var uppercase = false;
+
+var numbers = false;
+
+var specialchar = false;
+
+
+
 //function that gets users desired password length 
 function myLengthFunction() {
   var txt;
-  var length = prompt("Enter a length!\nMust be between 8 and 128\nThe number you eneter will determine how long the generated password will be");
+  length = prompt("Enter a length!\nMust be between 8 and 128\nThe number you eneter will determine how long the generated password will be");
   if (parseInt(length)>=8&&parseInt(length)<=128) {
     txt = ("You're password will be "+length+" characters long");
     console.log(parseInt(length));
@@ -28,7 +41,7 @@ function myLengthFunction() {
 //funciton that determines if user wants lowercase characters in genertated password
 function myLowerCaseFunction() {
   var txt;
-  var lowercase = confirm("Press a button!\nEither OK or Cancel.\nTo decide if lowercase characters should be included in generated password");
+  lowercase = confirm("Press a button!\nEither OK or Cancel.\nTo decide if lowercase characters should be included in generated password");
   if (lowercase === true) {
     txt = "You're including lowercase characters";
     generatepasswordfromthis.push(lowercasearray)
@@ -45,7 +58,7 @@ function myLowerCaseFunction() {
 
 function myUpperCaseFunction() {
   var txt;
-  var uppercase = confirm("Press a button!\nEither OK or Cancel.\nTo decide if uppercase characters should be included in generated password");
+  uppercase = confirm("Press a button!\nEither OK or Cancel.\nTo decide if uppercase characters should be included in generated password");
   if (uppercase === true) {
     txt = "You're including uppercase characters";
     generatepasswordfromthis.push(uppercasearray)
@@ -60,7 +73,7 @@ function myUpperCaseFunction() {
 
 function myNumbersFunction() {
   var txt;
-  var numbers = confirm("Press a button!\nEither OK or Cancel.\nTo decide if numbers should be included in generated password");
+  numbers = confirm("Press a button!\nEither OK or Cancel.\nTo decide if numbers should be included in generated password");
   if (numbers === true) {
     txt = "You're including numbers";
     generatepasswordfromthis.push(numberarray)
@@ -75,7 +88,7 @@ function myNumbersFunction() {
 
 function mySpecialCharFunction() {
   var txt;
-  var specialchar = confirm("Press a button!\nEither OK or Cancel.\nTo decide if special characters should be included in generated password");
+  specialchar = confirm("Press a button!\nEither OK or Cancel.\nTo decide if special characters should be included in generated password");
   if (specialchar === true) {
     txt = "You're including special characters";
     generatepasswordfromthis.push(specialchararray)
@@ -89,51 +102,53 @@ function mySpecialCharFunction() {
   
 }
 //random operators
-function getRandomLowerCase(lowercase) {
-      console.log(lowercase);
-      return lowercasearray[Math.floor(Math.random()* lowercasearray)];
+function getRandomLowerCase() {
+      
+      return lowercasearray[Math.floor(Math.random()* lowercasearray.length)];
       
     }
-function getRandomUpperCase(uppercase) {
-      console.log(uppercase);
-      return uppercasearray[Math.floor(Math.random()* uppercasearray)];
+function getRandomUpperCase() {
+      
+      return uppercasearray[Math.floor(Math.random()* uppercasearray.length)];
     }
     
-function getRandomNumber(numbers) {
-      console.log(numbers);
-      return numberarray[Math.floor(Math.random()* numberarray)];
+function getRandomNumber() {
+    
+      return numberarray[Math.floor(Math.random()* numberarray.length)];
     }
-function getRandomSpecialChar(specialchar) {
-      console.log(specialchar);
-      return specialchararray[Math.floor(Math.random()* specialchararray)];
+function getRandomSpecialChar() {
+    
+      return specialchararray[Math.floor(Math.random()* specialchararray.length)];
     }
 
 
 function myGeneratedPasswordFunction() {
   console.log("button-click")
-  for (i=0; i<parseInt(length); i++){ //not looping "length" amount of times
-    
-    if(lowercase === true&&generatedpassword.length<=length){   //not adding lowercase array to generated password string 
-      generatedpassword += getRandomLowerCase();
+  console.log(parseInt(length));
+  var parsedint = parseInt(length)
+  for (let k=0; k<(parsedint); k++){ 
+
+    if(lowercase === true&&generatedpassword.length<length){   
+      generatedpassword+=getRandomLowerCase();
       console.log(generatedpassword);
     }
 
-    if(uppercase === true&&generatedpassword.length <= length){
-      generatedpassword += getRandomUpperCase();
+    if(uppercase === true&&generatedpassword.length<length){
+      generatedpassword+=getRandomUpperCase();
       console.log(generatedpassword);
     }
 
-    if(numbers === true&&generatedpassword.length <= length){
-      generatedpassword += getRandomNumberCase();
+    if(numbers === true&&generatedpassword.length<length){
+      generatedpassword+=getRandomNumber();
       console.log(generatedpassword);
     }
 
-    if(specialchar === true&&generatedpassword.length <= length){
-      generatedpassword += getRandomSpecialChar();
+    if(specialchar === true&&generatedpassword.length<length){
+      generatedpassword+=getRandomSpecialChar();
       console.log(generatedpassword);
     }
 
   }   
-  document.getElementById("#password")=sgeneratedpassword; //not displaying this string in the html
+  document.getElementById("password").innerHTML=generatedpassword;
   return 
 }
